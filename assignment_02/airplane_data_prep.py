@@ -79,8 +79,6 @@ print(reg_model_sales.summary())
 # Part b) Read Specification Data
 ##################################################
 
-airplane_xlsx = pd.ExcelFile('airplane_data.xlsx')
-
 airplane_specs = pd.read_excel(airplane_xlsx,  'airplane_specs')
 
 airplane_specs.describe()
@@ -112,8 +110,6 @@ print(reg_model_sales_specs.summary())
 # Part c) Read Performance Data
 ##################################################
 
-airplane_xlsx = pd.ExcelFile('airplane_data.xlsx')
-
 airplane_perf = pd.read_excel(airplane_xlsx,  'airplane_perf')
 
 airplane_perf.describe()
@@ -142,7 +138,6 @@ reg_model_full = sm.ols(formula =
                            data = airplane_full).fit()
 
 
-# Display a summary table of regression results.
 print(reg_model_full.summary())
 
 
