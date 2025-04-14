@@ -4,14 +4,13 @@
 #
 # QMB 6315: Python for Business Analytics
 #
-# Name:
+# Name: Brian Carter
 #
-# Date:
+# Date: April 13, 2025
 #
 ##################################################
 #
-# Sample Script for Assignment 2:
-# Manipulating Data
+# Assignment 2: Manipulating Data
 #
 ##################################################
 """
