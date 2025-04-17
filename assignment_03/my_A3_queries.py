@@ -14,7 +14,7 @@
 # 
 # April 12, 2025
 # 
-# Sample Program for Assignment 3
+# Assignment 3
 # 
 ##################################################
 """
