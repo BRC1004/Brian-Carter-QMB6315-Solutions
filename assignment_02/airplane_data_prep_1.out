@@ -1,0 +1,5 @@
+C:\Users\MORIL027\Documents\GitHub\QMB6315S25_Grading\Brian-Carter-QMB6315-Solutions\assignment_02
+Traceback (most recent call last):
+  File "C:\Users\MORIL027\Documents\GitHub\QMB6315S25_Grading\Brian-Carter-QMB6315-Solutions\assignment_02\airplane_data_prep.py", line 45, in <module>
+    os.chdir('C:/Users/BRC10/OneDrive/Documents/GitHub/Brian-Carter-QMB6315-Solutions/assignment_02')
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:/Users/BRC10/OneDrive/Documents/GitHub/Brian-Carter-QMB6315-Solutions/assignment_02'

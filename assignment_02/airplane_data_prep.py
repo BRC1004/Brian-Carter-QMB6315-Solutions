@@ -42,7 +42,9 @@ print(os.path.dirname(os.path.realpath(__file__)))
 # Change to a new directory.
 
 # You could set it directly from the location of this file
-os.chdir('C:/Users/BRC10/OneDrive/Documents/GitHub/Brian-Carter-QMB6315-Solutions/assignment_02')
+# os.chdir('C:/Users/BRC10/OneDrive/Documents/GitHub/Brian-Carter-QMB6315-Solutions/assignment_02')
+print(os.path.dirname(os.path.realpath(__file__)))
+
 
 # Check that the change was successful.
 os.getcwd()
