@@ -12,7 +12,7 @@
 # College of Business Administration
 # University of Central Florida
 # 
-# April 12, 2025
+# April 18, 2025
 # 
 # Assignment 3
 # 
@@ -86,8 +86,16 @@ con = dbapi.connect('population_USA.db')
 
 
 cur = con.cursor()
-cur.execute('''CREATE TABLE Density(State TEXT,
- Population INTEGER, Area REAL)''')
+
+# Drop Density table if it exists to prevent "already exists" error
+cur.execute("DROP TABLE IF EXISTS Density")
+
+# Now create the table
+cur.execute('''CREATE TABLE Density (
+    State TEXT,
+    Population INTEGER,
+    Area REAL
+)''')
 con.commit()
 
 
@@ -133,44 +141,46 @@ con.commit()
 
 # d. Retrieve the contents of the table.
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
+print("\na) All Records:")
+for row in cur.execute("SELECT * FROM Density"):
+    print(row)
 
 
 # e. Retrieve the populations. 
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
+print("\nb) Populations:")
+for row in cur.execute("SELECT State, Population FROM Density"):
+    print(row)
 
 
 
 # f. Retrieve the states that have populations of less than one million. 
 
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
+print("\nc) Population less than 1 million:")
+for row in cur.execute("SELECT * FROM Density WHERE Population < 1000000"):
+    print(row)
 
 
 # g. Retrieve the states that have populations of less than one million
 # or greater than five million. 
 
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
+print("\ne) Population <1M or >5M:")
+for row in cur.execute("SELECT * FROM Density WHERE Population < 1000000 OR Population > 5000000"):
+    print(row)
 
 
 # h. Retrieve the states that *do not* have populations of less than one million
 # or greater than five million. 
 
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
-
+print("\nh) States with population between 1M and 5M:")
+for row in cur.execute('''
+    SELECT * FROM Density
+    WHERE NOT (Population < 1000000 OR Population > 5000000)
+'''):
+    print(row)
 
 
 
@@ -191,9 +201,17 @@ for row in cur.fetchall():
 # cur = con.cursor()
 
 
-cur.execute('''CREATE TABLE Capitals(State TEXT,
- Capital TEXT, Population INTEGER)''')
-con.commit()
+cur.execute("DROP TABLE IF EXISTS Capitals")
+
+cur.execute('''
+    CREATE TABLE Capitals (
+        State TEXT,
+        Capital TEXT,
+        Area REAL,
+        Population INTEGER
+    )
+''')
+
 
 # Load the table from a spreadsheet.
 
@@ -213,9 +231,10 @@ capitals_df.columns
 
 # Loop through the rows of the dataframe to INSERT the VALUES.
 for row in capitals_df.index:
- cur.execute('INSERT INTO Capitals VALUES (?, ?, ?)', 
+ cur.execute('INSERT INTO Capitals VALUES (?, ?, ?, ?)', 
                (str(capitals_df['state'][row]), 
-                str(capitals_df['capital'][row]), 
+                str(capitals_df['capital'][row]),
+                float(capitals_df['area'][row]),
                 int(capitals_df['population'][row]) ))
 con.commit()
 
@@ -286,9 +305,12 @@ for row in cur.fetchall():
 # have populations greater than 100,000. 
 
 
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
+cur.execute('''
+    SELECT State, Area 
+    FROM Capitals 
+    WHERE Population > 100000
+''')
+print(cur.fetchall())
 
 
 
@@ -297,36 +319,44 @@ for row in cur.fetchall():
 # and capital city populations more than 500,000. 
 
 
-
-cur.execute('QUERY GOES HERE')
-for row in cur.fetchall():
- print(row)
-
+cur.execute('''
+    SELECT State, Population, Area, (Population * 1.0 / Area) AS Density
+    FROM Capitals
+    WHERE (Population * 1.0 / Area) > 10 AND Population > 500000
+''')
+print(cur.fetchall())
 
 # e. Retrieve the total land area of the USA. 
 
-
-cur.execute('QUERY GOES HERE')
+cur.execute('''
+    SELECT SUM(Area) FROM Capitals
+''')
 print(cur.fetchone())
 
 
 # f. Retrieve the average population of the capital cities. 
 
 
-cur.execute('QUERY GOES HERE')
+cur.execute('''
+    SELECT AVG(Population) FROM Capitals
+''')
 print(cur.fetchone())
 
 
 # g. Retrieve the lowest population of the capital cities. 
 
 
-cur.execute('QUERY GOES HERE')
+cur.execute('''
+    SELECT MIN(Population) FROM Capitals
+''')
 print(cur.fetchone())
 
 
 # h. Retrieve the highest population of the states or territories. 
 
-cur.execute('QUERY GOES HERE')
+cur.execute('''
+    SELECT MAX(Population) FROM Capitals
+''')
 print(cur.fetchone())
 
 
