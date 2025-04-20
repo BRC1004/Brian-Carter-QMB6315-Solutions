@@ -257,20 +257,7 @@ con.close()
 
 
 ##################################################
-# Extra code snippets
-##################################################
 
-# In case things go wrong, you can always drop the table
-# and start over:
-# cur.execute('DROP TABLE Sales')
-# cur.execute('DROP TABLE Specs')
-# cur.execute('DROP TABLE Perf')
-
-# This can get the schema of the table,
-# cur.execute("PRAGMA table_info('Sales')").fetchall()
-# cur.execute("PRAGMA table_info('Specs')").fetchall()
-# cur.execute("PRAGMA table_info('Perf')").fetchall()
-# which states the names of the variables and the data types.
 
 
 
