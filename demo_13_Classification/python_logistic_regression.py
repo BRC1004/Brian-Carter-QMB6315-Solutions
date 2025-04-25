@@ -147,6 +147,70 @@ credit[['default','AA','A','B','C']].groupby('default').mean()
 ##################################################
 
 
+formula = 'default ~ bmaxrate + amount + close + bankcardutil + AA + A + B + C + D'
+
+
+logit_model_full = smf.logit(formula, data=credit)
+logit_model_fit_full = logit_model_full.fit()
+
+
+print(logit_model_fit_full.summary())
+
+
+
+pred_probs_full = logit_model_fit_full.predict(credit)
+
+
+from sklearn.metrics import roc_auc_score, roc_curve
+logit_roc_auc_full = roc_auc_score(credit['default'], pred_probs_full)
+fpr_full, tpr_full, thresholds_full = roc_curve(credit['default'], pred_probs_full)
+
+
+plt.figure()
+plt.plot(fpr_full, tpr_full, label=f'Logistic Regression (area = {logit_roc_auc_full:.2f})')
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve (Full Model)')
+plt.legend(loc="lower right")
+plt.savefig('Logit_ROC_full.png')
+plt.show()
+
+
+
+
+
+formula_restricted = 'default ~ close + bankcardutil + AA + A + B + C + D'
+
+logit_model_restricted = smf.logit(formula_restricted, data=credit)
+logit_model_fit_restricted = logit_model_restricted.fit()
+
+print(logit_model_fit_restricted.summary())
+
+
+
+
+pred_probs_restricted = logit_model_fit_restricted.predict(credit)
+
+logit_roc_auc_restricted = roc_auc_score(credit['default'], pred_probs_restricted)
+fpr_restricted, tpr_restricted, thresholds_restricted = roc_curve(credit['default'], pred_probs_restricted)
+
+plt.figure()
+plt.plot(fpr_restricted, tpr_restricted, label=f'Logistic Regression (area = {logit_roc_auc_restricted:.2f})')
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve (Decision Model)')
+plt.legend(loc="lower right")
+plt.savefig('Logit_ROC_decision.png')
+plt.show()
+
+
+
 #--------------------------------------------------
 # Fit the Logistic Model (with statsmodels module).
 #--------------------------------------------------

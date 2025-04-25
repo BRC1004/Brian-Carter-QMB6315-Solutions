@@ -12,6 +12,9 @@ This is the regression result from the full model estimated in part (a).
 
 ```
 
+OUTPUT:
+
+
 formula = 'default ~ bmaxrate + amount + close + bankcardutil + AA + A + B + C + D'
 
 
@@ -24,6 +27,8 @@ print(logit_model_fit_full.summary())
 
 
 
+
+REGRESSION RESULTS:
 
 
  Current function value: 0.234970
@@ -56,7 +61,7 @@ D               -0.4563      0.239     -1.911      0.056      -0.924       0.012
 
 ```
 
-This model has the following ROC curve.
+Graphical Representation: Logit_ROC_full
 
 
 <img src="Logit_ROC_full.png" width="500"/>
@@ -72,6 +77,10 @@ available when making a credit decision.
 
 ```
 
+
+OUTPUT:
+
+
 formula_restricted = 'default ~ close + bankcardutil + AA + A + B + C + D'
 
 logit_model_restricted = smf.logit(formula_restricted, data=credit)
@@ -81,6 +90,9 @@ print(logit_model_fit_restricted.summary())
 
 
 
+
+
+REGRESSION RESULTS:
 
 
  Current function value: 0.245008
@@ -110,7 +122,7 @@ D               -0.8801      0.204     -4.323      0.000      -1.279      -0.481
 
 ```
 
-This model has the following ROC curve.
+Graphical Representation: Logit_ROC_decision
 
 
 <img src="Logit_ROC_decision.png" width="500"/>
