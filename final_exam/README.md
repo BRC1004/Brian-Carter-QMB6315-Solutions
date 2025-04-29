@@ -16,9 +16,12 @@ Enter the summary statistics from your recommended model in the code block below
 EXPLANATION:
 
 
-After completion of the analysis, it has been determined that the log_odds_util is the ideal recommended model.  
-Despite being a bit more complex in nature, the log_odds_util model yielded the highest R-sqaured and adjusted R-squared (.843 & .841 respectively) while acting as a catalyst in strengthening nonlinear relationships.  
-Taking these factors into consideration and based off the numerical regresion output below, using this model will lead to the most optimized and accurate decision making.
+After completion of the analysis, it has been determined that the log_odds_util 
+is the ideal recommended model.  Despite being a bit more complex in nature, the 
+log_odds_util model yielded the highest R-sqaured and adjusted R-squared 
+(.843 & .841 respectively) while acting as a catalyst in strengthening nonlinear relationships.  
+Taking these factors into consideration and based off the numerical regresion 
+output below, using this model will lead to the most optimized and accurate decision making.
 
 
 
