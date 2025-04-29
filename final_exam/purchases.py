@@ -229,7 +229,7 @@ print(reg_model_full.summary())
 #--------------------------------------------------
 
 
-# Create a variable for credit utilization.
+
 
 purchase_full["utilization"] = purchase_full["purchases"] / purchase_full["credit_limit"]
 
@@ -256,7 +256,7 @@ print(reg_model_util.summary())
 #--------------------------------------------------
 
 
-# Create a variable for credit utilization.
+
 
 import math
 purchase_full["log_odds_util"] = purchase_full["utilization"] / (1 - purchase_full["utilization"])
@@ -293,10 +293,6 @@ print(reg_model_logodds.summary())
 
 # Close the connection when finished. 
 con.close()
-
-# Then we can continue with this file when you have time
-# to work on it later.
-
 
 
 
